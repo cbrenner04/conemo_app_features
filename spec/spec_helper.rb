@@ -1,9 +1,12 @@
 require 'appium_lib'
 require 'rspec'
 require 'env'
-require_relative './pages/configuration.rb'
-require_relative './pages/home.rb'
-require_relative './pages/training.rb'
+require_relative '../lib/pages/configuration.rb'
+require_relative '../lib/pages/help.rb'
+require_relative '../lib/pages/home.rb'
+require_relative '../lib/pages/instructions.rb'
+require_relative '../lib/pages/session.rb'
+require_relative '../lib/pages/training.rb'
 
 apk = {
   platformName: :android,
