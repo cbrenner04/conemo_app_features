@@ -2,49 +2,26 @@
 
 # these are just proof of concept at the moment
 describe 'An authorized user' do
-  it 'open tray, clear notifications, visit Purple Robot, return to app' do
-    # open tray
-    driver.open_notifications
-
-    # rescue exception in case notifications have been cleared
-    begin
-      find('com.android.systemui:id/clear_all_button').click
-    rescue Selenium::WebDriver::Error::NoSuchElementError
-    end
-    sleep(2)
-
-    # visit Purple Robot
-    driver.open_notifications
-    text('Application Status').click
-
-    # open recent apps
-    driver.press_keycode 187
-    sleep(2)
-
-    # select first app in recent apps
-    app_icon = tags('android.widget.ImageView')
-    app_icon[0].click
-    sleep(2)
-
-    # this will error out due to app showing raw angular on resume
-    begin
-      home.assert_on_page
-    rescue Selenium::WebDriver::Error::TimeOutError
-    end
+  before(:all) do
+    # configure app
+    configuration.enter_id('1234567')
+    driver.hide_keyboard
+    configuration.submit
+    home.assert_on_page
   end
 
-  it 'changes the date through system settings' do
+  after(:all) do
     # navigate to home page
     driver.press_keycode 3
     sleep(2)
 
     # select 'Settings' - NOTE: my device has 'Settings' on the home page
-    text('Settings').click
+    find('Settings').click
 
     # scroll to and select 'Date and Time'
     begin
       tries ||= 8
-      text('Date and time').click
+      find('Date and time').click
     rescue Selenium::WebDriver::Error::NoSuchElementError
       Appium::TouchAction
         .swipe(start_x: 630, start_y: 1610,
@@ -53,26 +30,68 @@ describe 'An authorized user' do
     end
 
     # turn off automatic date and time
-    text('Automatic date and time').click
+    find('Automatic date and time').click
+  end
 
-    # open date picker
-    text('Set date').click
+  it 'changes the date to final day, selects final notification' do
+    # navigate to home page
+    driver.press_keycode 3
+    sleep(2)
 
-    # set date ahead 7 days, this will break if that rolls into next month
-    7.times do
-      button = tags('android.widget.ImageButton')
-      button[2].click
-      sleep(1)
+    # select 'Settings' - NOTE: my device has 'Settings' on the home page
+    find('Settings').click
+
+    # scroll to and select 'Date and Time'
+    begin
+      tries ||= 8
+      find('Date and time').click
+    rescue Selenium::WebDriver::Error::NoSuchElementError
+      Appium::TouchAction
+        .swipe(start_x: 630, start_y: 1610,
+               end_x: 540, end_y: 1090, duration: 300)
+      retry unless (tries -= 1).zero?
     end
 
+    # turn off automatic date and time
+    find('Automatic date and time').click
+
+    # open time picker
+    find('Set time').click
+
+    # set time to 8:00 AM
+    time = tags('android.widget.EditText')
+    time[0].click
+    driver.press_keycode 15
+    time[1].click
+    driver.press_keycode 7
+    driver.hide_keyboard
+    button = tags('android.widget.Button')
+    button[0].click
+    find('Set').click
+
+    # open date picker
+    find('Set date').click
+
+    # set date ahead
+    date_edit = tags('android.widget.EditText')
+    date_edit[0].click
+    date_1 = Date.today + 44
+    date_edit[0].send_keys("#{date_1.strftime('%b')}")
+    date_edit[1].send_keys("#{date_1.strftime('%d')}")
+    date_edit[2].send_keys("#{date_1.strftime('%Y')}")
+    driver.hide_keyboard
+
     # submit
-    last_button.click
+    find('Set').click
 
-    # assert date is set to a week from now
-    date_1 = Date.today + 7
-    text("#{date_1.strftime('%m/%d/%Y')}")
+    # assert date is set to correct date
+    find("#{date_1.strftime('%m/%d/%Y')}")
 
-    # reset automatic date and time
-    text('Automatic date and time').click
+    # open tray
+    driver.open_notifications
+    sleep(2)
+    text('Sesión final').click
+
+    home.assert_on_page
   end
 end

@@ -6,6 +6,9 @@ This test suit utilizes Appium to test features in the
 Make sure you have the most recent version of the app built by using the
 instructions that can be found in the link above.
 
+You will need to update the path to the apk in `env.rb` with the path on your
+machine.
+
 Start Appium server in the terminal.
 
 ```
