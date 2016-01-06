@@ -1,6 +1,6 @@
 # page object
 module Pages
-  # for help page
+  # for sessions page
   module Session
     class << self
       def open
@@ -13,14 +13,11 @@ module Pages
 
       def click_next
         execute_script 'mobile: tap', x: 890, y: 1845
+        sleep(1)
       end
 
       def click_play
-        execute_script 'mobile: tap', x: 563, y: 1268
-      end
-
-      def open_dropdown
-        execute_script 'mobile: tap', x: 930, y: 1425
+        tag('android.widget.Image').click
       end
 
       def choose_response
@@ -35,8 +32,24 @@ module Pages
         first_button.click
       end
 
-      def return_to_session_page
+      def first_selection_text
+        items = tags('android.widget.CheckTextView')
+        items[0].first_selection_text
+      end
+
+      def return_to_home_page
         execute_script 'mobile: tap', x: 890, y: 1845
+      end
+
+      def session_list_header
+        'Sesiones'
+      end
+
+      def scroll_down
+        Appium::TouchAction
+          .swipe(start_x: 630, start_y: 1610,
+                 end_x: 540, end_y: 1090, duration: 300)
+        sleep(2)
       end
     end
   end

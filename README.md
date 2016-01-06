@@ -7,7 +7,8 @@ Make sure you have the most recent version of the app built by using the
 instructions that can be found in the link above.
 
 You will need to update the path to the apk in `env.rb` with the path on your
-machine.
+machine. This is also true for the `appium.txt`. The `appium.txt` file is
+present onliy for the use of the appium ruby console (arc).
 
 Start Appium server in the terminal.
 
