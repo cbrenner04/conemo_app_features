@@ -9,7 +9,7 @@ module Pages
 
       def start
         button = tags('android.view.View')
-        button[57].click
+        button[44].click
       end
 
       def open_datepicker
@@ -22,6 +22,10 @@ module Pages
 
       def open_timepicker
         execute_script 'mobile: tap', x: 845, y: 1280
+      end
+
+      def enter_text(text)
+        tag('android.widget.EditText').send_keys(text)
       end
     end
   end

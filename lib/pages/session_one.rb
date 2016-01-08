@@ -15,6 +15,10 @@ module Pages
       def open_dropdown
         execute_script 'mobile: tap', x: 930, y: 1425
       end
+
+      def click_play
+        execute_script 'mobile: tap', x: 545, y: 1285
+      end
     end
   end
 end

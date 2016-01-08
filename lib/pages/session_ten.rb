@@ -9,7 +9,7 @@ module Pages
 
       def start
         button = tags('android.view.View')
-        button[41].click
+        button[32].click
       end
 
       def open_dropdown
@@ -17,8 +17,15 @@ module Pages
       end
 
       def choose_item
-        items = tags('android.widget.CheckTextView')
-        items[rand(0..11)].click
+        tries ||= 2
+        items = tags('android.widget.CheckedTextView')
+        r = rand(0..11)
+        items[r].click
+      rescue NoMethodError
+        Appium::TouchAction
+          .swipe(start_x: 630, start_y: 1610,
+                 end_x: 540, end_y: 1090, duration: 300)
+        retry unless (tries -= 1).zero?
       end
 
       def open_datepicker

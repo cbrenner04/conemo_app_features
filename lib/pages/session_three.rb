@@ -9,7 +9,7 @@ module Pages
 
       def start
         button = tags('android.view.View')
-        button[13].click
+        button[11].click
       end
 
       def open_dropdown
@@ -17,8 +17,9 @@ module Pages
       end
 
       def choose_item
-        items = tags('android.widget.CheckTextView')
-        items[rand(0..6)].click
+        items = tags('android.widget.CheckedTextView')
+        r = rand(0..6)
+        items[r].click
       end
     end
   end

@@ -9,7 +9,7 @@ module Pages
 
       def start
         button = tags('android.view.View')
-        button[21].click
+        button[17].click
       end
 
       def open_dropdown

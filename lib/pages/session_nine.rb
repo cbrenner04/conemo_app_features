@@ -9,7 +9,7 @@ module Pages
 
       def start
         button = tags('android.view.View')
-        button[37].click
+        button[29].click
       end
     end
   end

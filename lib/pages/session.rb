@@ -33,7 +33,7 @@ module Pages
       end
 
       def first_selection_text
-        items = tags('android.widget.CheckTextView')
+        items = tags('android.widget.CheckedTextView')
         items[0].first_selection_text
       end
 
@@ -49,7 +49,6 @@ module Pages
         Appium::TouchAction
           .swipe(start_x: 630, start_y: 1610,
                  end_x: 540, end_y: 1090, duration: 300)
-        sleep(2)
       end
     end
   end

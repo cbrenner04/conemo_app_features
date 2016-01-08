@@ -72,6 +72,6 @@ end
 
 def return_to_app
   driver.press_keycode 3
-  find('CONEMO').click
+  wait { find('CONEMO').click }
   home.assert_on_page
 end
