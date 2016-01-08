@@ -7,6 +7,8 @@ describe 'An authorized user' do
   before(:all) do
     start_driver
     configure_participant('test')
+    navigate_to_date_time
+    toggle_auto_date_time
     increment_date_by(44)
     return_to_app
   end

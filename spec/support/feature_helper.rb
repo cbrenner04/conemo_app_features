@@ -28,8 +28,6 @@ def navigate_to_date_time
 end
 
 def toggle_auto_date_time
-  navigate_to_date_time
-
   # turn off automatic date and time
   find('Automatic date and time').click
 end
@@ -51,8 +49,6 @@ end
 # end
 
 def increment_date_by(days)
-  toggle_auto_date_time
-
   # open date picker
   find('Set date').click
 
