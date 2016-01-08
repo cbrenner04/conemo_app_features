@@ -1,7 +1,7 @@
 require 'appium_lib'
 require 'rspec'
 require 'env'
-Dir['./lib/pages/*.rb'].each { |file| require file }
+Dir['./lib/pages/**/*.rb'].each { |file| require file }
 
 apk = {
   platformName: :android,
