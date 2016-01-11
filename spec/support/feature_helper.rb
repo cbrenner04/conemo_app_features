@@ -32,22 +32,6 @@ def toggle_auto_date_time
   find('Automatic date and time').click
 end
 
-# def change_time_to_0800
-#   # open time picker
-#   find('Set time').click
-
-#   # set time to 8:00 AM
-#   time = tags('android.widget.EditText')
-#   time[0].click
-#   driver.press_keycode 15
-#   time[1].click
-#   driver.press_keycode 7
-#   driver.hide_keyboard
-#   button = tags('android.widget.Button')
-#   button[0].click
-#   find('Set').click
-# end
-
 def increment_date_by(days)
   # open date picker
   find('Set date').click
