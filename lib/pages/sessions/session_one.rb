@@ -23,7 +23,7 @@ module Pages
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_1
     Pages::SessionOne

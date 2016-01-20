@@ -92,7 +92,7 @@ module SessionFive
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_5_slide_1
     SessionFive::SlideOne

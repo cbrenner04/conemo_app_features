@@ -86,7 +86,7 @@ module SessionTwo
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_2_slide_1
     SessionTwo::SlideOne

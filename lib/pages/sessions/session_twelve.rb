@@ -15,7 +15,7 @@ module Pages
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_12
     Pages::SessionTwelve

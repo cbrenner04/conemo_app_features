@@ -135,7 +135,7 @@ module SessionOne
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_1_slide_1
     SessionOne::SlideOne

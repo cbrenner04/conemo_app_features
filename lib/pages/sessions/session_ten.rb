@@ -43,7 +43,7 @@ module Pages
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_10
     Pages::SessionTen

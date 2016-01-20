@@ -14,7 +14,7 @@ module Pages
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def configuration
     Pages::Configuration

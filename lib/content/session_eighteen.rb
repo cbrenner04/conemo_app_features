@@ -74,7 +74,7 @@ module SessionEighteen
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_18_slide_1
     SessionEighteen::SlideOne

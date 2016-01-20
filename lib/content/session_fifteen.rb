@@ -25,7 +25,7 @@ module SessionFifteen
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_15_slide_1
     SessionFifteen::SlideOne

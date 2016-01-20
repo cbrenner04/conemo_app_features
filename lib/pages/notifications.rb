@@ -37,7 +37,7 @@ module Pages
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def notifications
     Pages::Notifications

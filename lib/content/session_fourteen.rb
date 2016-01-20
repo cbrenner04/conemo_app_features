@@ -42,7 +42,7 @@ module SessionFourteen
   end
 end
 
-# initialize
+# create reference
 module Kernel
   def session_14_slide_1
     SessionFourteen::SlideOne
