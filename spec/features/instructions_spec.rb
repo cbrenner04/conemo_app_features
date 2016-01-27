@@ -1,14 +1,14 @@
 # filename: ./spec/features/instructions_spec.rb
 
 describe 'An authorized user' do
-  before(:all) do
-    start_driver
-    configure_participant('test')
-  end
+  # before(:all) do
+  #   start_driver
+  #   # configure_participant('test')
+  # end
 
-  after(:all) do
-    driver_quit
-  end
+  # after(:all) do
+  #   driver_quit
+  # end
 
   it 'reads the instructions' do
     instructions.open

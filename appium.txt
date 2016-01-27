@@ -1,7 +1,7 @@
 [caps]
 platformName = "Android"
 deviceName = "Nexus_5_API_21_x86"
-app = "/Users/Chris/Work/conemo_app/platforms/android/build/outputs/apk/android-armv7-debug.apk"
+app = "/Users/Chris/Work/conemo_app/platforms/android/build/outputs/apk/android-debug.apk"
 
 [appium_lib]
 sauce_username = false

@@ -5,8 +5,8 @@ Dir['./lib/content/*.rb'].each { |file| require file }
 
 describe 'An authorized user' do
   before(:all) do
-    start_driver
-    configure_participant('test')
+    # start_driver
+    # configure_participant('test')
     navigate_to_date_time
     toggle_auto_date_time
     increment_date_by(44)
@@ -15,7 +15,7 @@ describe 'An authorized user' do
 
   after(:all) do
     toggle_auto_date_time
-    driver_quit
+    # driver_quit
   end
 
   it 'navigates to the session menu' do

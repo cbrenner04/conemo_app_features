@@ -16,12 +16,12 @@ module Pages
         sleep(1)
       end
 
-      def update_date_navigate_to_notifications(day)
+      def update_date_and_navigate_to_notifications(day)
         clear_notifications
         navigate_to_date_time
         increment_date_by(day)
         driver.open_notifications
-        sleep(1)
+        sleep(2)
       end
 
       def open_notification(title)

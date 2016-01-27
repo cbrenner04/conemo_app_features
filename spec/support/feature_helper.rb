@@ -40,14 +40,15 @@ def increment_date_by(days)
   date_edit = tags('android.widget.EditText')
   date_edit[0].click
   date_1 = Date.today + days
-  date_edit[0].send_keys("#{date_1.strftime('%b')}")
-  date_edit[1].send_keys("#{date_1.strftime('%d')}")
-  date_edit[2].send_keys("#{date_1.strftime('%Y')}")
+  puts date_1.strftime('%b')
+  date_edit[0].send_keys(date_1.strftime('%b'))
+  date_edit[1].send_keys(date_1.strftime('%d'))
+  date_edit[2].send_keys(date_1.strftime('%Y'))
   driver.hide_keyboard
-  find('Set').click
+  find('OK').click
 
   # assert date is set to correct date
-  find("#{date_1.strftime('%m/%d/%Y')}")
+  find(date_1.strftime('%B %d, %Y'))
 end
 
 def return_to_app
