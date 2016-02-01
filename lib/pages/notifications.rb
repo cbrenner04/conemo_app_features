@@ -3,23 +3,10 @@ module Pages
   # for notifications
   module Notifications
     class << self
-      def clear_notifications
-        driver.open_notifications
-        begin
-          tries ||= 2
-          find('com.android.systemui:id/clear_all_button').click
-        rescue Selenium::WebDriver::Error::NoSuchElementError
-          Appium::TouchAction.swipe(start_x: 540, start_y: 1090, end_x: 630,
-                                    end_y: 1610, duration: 200)
-          retry unless (tries -= 1).zero?
-        end
-        sleep(1)
-      end
-
       def update_date_and_navigate_to_notifications(day)
-        clear_notifications
-        navigate_to_date_time
-        increment_date_by(day)
+        android_native.clear_notifications
+        android_native.navigate_to_date_time
+        android_native.increment_date_by(day)
         driver.open_notifications
         sleep(2)
       end

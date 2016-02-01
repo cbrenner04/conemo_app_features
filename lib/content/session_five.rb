@@ -80,7 +80,7 @@ module SessionFive
     class << self
       def line_1
         'Identifica y recuerda especialmente aquellas que, si las hicieras,' \
-        ' te harían sentir satisfecho y orgulloso de ti mismo y que te ' 
+        ' te harían sentir satisfecho y orgulloso de ti mismo y que te ' \
         'ayudarían a lograr tu objetivo en este programa.'
       end
 

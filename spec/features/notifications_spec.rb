@@ -11,17 +11,13 @@ end
 # these are just proof of concept at the moment
 describe 'An authorized user' do
   before(:all) do
-    # start_driver
-    # configure_participant('test')
-    notifications.clear_notifications
-    navigate_to_date_time
-    toggle_auto_date_time
+    android_native.navigate_to_date_time
+    android_native.toggle_auto_date_time
   end
 
   after(:all) do
-    navigate_to_date_time
-    toggle_auto_date_time
-    # driver_quit
+    android_native.navigate_to_date_time
+    android_native.toggle_auto_date_time
   end
 
   it 'changes the date to day 3, selects first notification' do

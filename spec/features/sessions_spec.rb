@@ -5,17 +5,14 @@ Dir['./lib/content/*.rb'].each { |file| require file }
 
 describe 'An authorized user' do
   before(:all) do
-    # start_driver
-    # configure_participant('test')
-    navigate_to_date_time
-    toggle_auto_date_time
-    increment_date_by(44)
-    return_to_app
+    android_native.navigate_to_date_time
+    android_native.toggle_auto_date_time
+    android_native.increment_date_by(44)
+    android_native.return_to_app
   end
 
   after(:all) do
-    toggle_auto_date_time
-    # driver_quit
+    android_native.toggle_auto_date_time
   end
 
   it 'navigates to the session menu' do

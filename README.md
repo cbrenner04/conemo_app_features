@@ -3,45 +3,53 @@
 This test suit utilizes Appium to test features in the
 [Conemo application](https://github.com/cbitstech/conemo_app).
 
-Make sure you have the most recent version of the app built by using the
-instructions that can be found in the link above.
+To run this suite you will need to run the testing server in the above repo.
+This can be done by running 
+
+```
+node path/to/conemo_app/test/support/dummy_server.js
+```
+
+You will then need to build the app following the instructions in the above
+repo except you will need to change the server to http://127.0.0.1:1337. For
+example:
+
+```
+LOCALE=es-PE SERVER=http://127.0.0.1:1337 npm run install:android
+```
 
 You will need to update the path to the apk in `env.rb` with the path on your
 machine. This is also true for the `appium.txt`. The `appium.txt` file is
-present only for the use of the appium ruby console (arc).
+present only for the use of the appium ruby-console (arc).
 
 You will need to run this on a phone plugged into your machine via USB.
 
-In order to configure the application you will need to run the
-[conemo_dashboard](https://github.com/cbitstech/conemo_dashboard) locally.
-Because you will be interacting with the local version of the dashboard, you
-will need to enable "Port forwarding". This can be done via Chrome. Open the
-browser and type in "chrome://inspect". You will see a button "Port forwarding",
-select that. The "Port" should be "3000" and the "IP address and port" should
-be "localhost:3000". Select "Enable port forwarding" at the bottom and select
-"Done". You should only need to do this once but you may have to open
-chrome://inspect and check to make sure there is a green light
-next to your device name with ":3000".
+You will need to enable port forwarding so your app can talk to your server.
+You can do this by going to `chrome://inspect` in Chrome, selecting "Port
+forwarding" and add "Port": `1337` and "IP address and port":
+`127.0.0.1:1337`. Finally you will need to select "Enable port forwarding" and
+then select "Done". You should see next to your device name a green light with
+"1337" next to it. 
 
-Once the dashboard is run locally you will need to set up a configuration
-token for your test participant. To do this, navigate to "localhost:3000",
-login as `user_100` (see fixture data in the conemo_dashboard for email and
-password). Select "ADMIN" in the top left corner and choose "Participants"
-from the menu. Find participant with study identifier "1000" and select the
-"i" on the right to go to their details page. In the URL, after "participant/",
-you will see a number. Copy that number and insert it into the following URL
-"http://localhost:3000/entities/<number from previous URL goes here>/tokens".
-This will take you to the configuration token management page. You will need
-to create a token for this participant to run the app. For now you will need
-to manually enter the configuration token to set up the app.
+Once everything above has been done once, below are the steps you will take to
+run the suite:
 
-Start Appium server in the terminal.
+Open the terminal and run (this can be from any directory):
+
+```
+node path/to/conemo_app/test/support/dummy_server.js
+```
+
+Open Chrome and go to `chrome://inspect`. You should see your device and it
+should have a green light with "1337" next to it.
+
+Open a new tab in the terminal and run (this can be from any directory):
 
 ```
 appium &
 ```
 
-Run the specs in a new window.
+Open a third tab in the terminal and run (from within this directory):
 
 ```
 rspec

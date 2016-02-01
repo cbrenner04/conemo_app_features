@@ -25,7 +25,7 @@ module SessionTen
       end
 
       def line_2
-        'Poco a poco ganarás la confianza necesaria para ir haciendo ' 
+        'Poco a poco ganarás la confianza necesaria para ir haciendo ' \
         'actividades más complejas.'
       end
     end
