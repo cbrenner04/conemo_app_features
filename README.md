@@ -3,7 +3,10 @@
 This test suit utilizes Appium to test features in the
 [Conemo application](https://github.com/cbitstech/conemo_app).
 
-To run this suite you will need to run the testing server in the above repo.
+This test suite is written for Android OS v 5.1.1. This is important as it will
+not translate to Android OS v 6.0. 
+
+You will need to run the testing server in the above repo.
 This can be done by running 
 
 ```
