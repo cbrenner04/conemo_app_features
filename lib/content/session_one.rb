@@ -70,7 +70,7 @@ module SessionOne
   module SlideFive
     class << self
       def line_1
-        'Así, combinando actividades para mejorar tu salud física y tu salud ' \
+        'Así combinando actividades para mejorar tu salud física y tu salud ' \
         'emocional, tendrás una vida más satisfactoria y feliz.'
       end
     end

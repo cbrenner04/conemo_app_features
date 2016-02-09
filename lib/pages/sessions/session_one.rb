@@ -7,17 +7,21 @@ module Pages
         '¡Bienvenido a CONEMO!'
       end
 
+      def view
+        tags('android.view.View')
+      end
+
       def start
-        button = tags('android.view.View')
-        button[5].click
+        view[5].click
       end
 
       def open_dropdown
-        execute_script 'mobile: tap', x: 930, y: 1425
+        dropdown = tags('android.widget.Spinner')
+        dropdown[0].click
       end
 
       def click_play
-        execute_script 'mobile: tap', x: 545, y: 1285
+        view[24].click
       end
     end
   end

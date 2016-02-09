@@ -13,12 +13,23 @@ This can be done by running
 node path/to/conemo_app/test/support/dummy_server.js
 ```
 
-You will then need to build the app following the instructions in the above
-repo except you will need to change the server to http://127.0.0.1:1337. For
-example:
+You will also need to run the
+[Conemo Dashboard](http://github.com/cbitstech/conemo_dashboard). To run this
 
 ```
-LOCALE=es-PE SERVER=http://127.0.0.1:1337 npm run install:android
+rake db:drop db:create db:migrate
+rake selenium_seed:with_fixtures
+rails s
+```
+
+You will then need to build the app following the instructions in the above
+repo except you will need to change the API_SERVER to http://127.0.0.1:1337 and
+the LESSON_SERVER to http://localhost:3000. Alternatively, you can use staging
+build the app. For example:
+
+```
+LOCALE=es-PE API_SERVER=http://127.0.0.1:1337 \
+LESSON_SERVER=http://localhost:3000 npm run install:android
 ```
 
 You will need to update the path to the apk in `env.rb` with the path on your

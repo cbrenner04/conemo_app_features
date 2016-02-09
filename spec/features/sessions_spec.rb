@@ -12,6 +12,7 @@ describe 'An authorized user' do
   end
 
   after(:all) do
+    android_native.navigate_to_date_time
     android_native.toggle_auto_date_time
   end
 
@@ -35,9 +36,7 @@ describe 'An authorized user' do
                  session_1_slide_8.line_1, session_1_slide_8.line_2,
                  session_1_slide_8.line_3, session_1_slide_9.line_1,
                  session_1_slide_9.line_2, session_1_slide_9.line_3]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     6.times { session.click_next }
@@ -60,7 +59,7 @@ describe 'An authorized user' do
   it 'completes the second session' do
     session.open
 
-    scroll_to_and_start(session_2, '1 / 6')
+    session_2.start
 
     wait do
       content = [session_2_slide_1.line_1, session_2_slide_1.line_2,
@@ -492,6 +491,8 @@ describe 'An authorized user' do
   end
 end
 
+# opening the session will fail if you don't run the entire page due to an
+# element being subtracted from this page after every view
 def scroll_to_and_start(item, page_num)
   tries ||= 7
   item.start
