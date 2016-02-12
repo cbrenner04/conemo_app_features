@@ -67,6 +67,7 @@ PLATFORMS
 DEPENDENCIES
   appium_console
   appium_lib (~> 7.0.0)
+  pry
   rspec (~> 3.3.0)
   selenium-webdriver (= 2.47.1)
 

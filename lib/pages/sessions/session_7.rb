@@ -8,12 +8,11 @@ module Pages
       end
 
       def start
-        button = tags('android.view.View')
-        button[23].click
+        tags('android.view.View')[23].click
       end
 
       def open_dropdown
-        execute_script 'mobile: tap', x: 830, y: 1550
+        tags('android.widget.Spinner')[0].click
       end
 
       def open_datepicker

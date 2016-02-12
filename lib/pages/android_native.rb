@@ -4,6 +4,7 @@ module Pages
   module AndroidNative
     class << self
       def clear_notifications
+        sleep(1)
         driver.open_notifications
         begin
           tries ||= 2
@@ -13,15 +14,16 @@ module Pages
                                     end_y: 1610, duration: 200)
           retry unless (tries -= 1).zero?
         end
-        sleep(1)
       end
 
       def navigate_to_date_time
         # navigate to home page
         driver.press_keycode 3
-        sleep(1)
 
         # select 'Settings' - NOTE: my device has 'Settings' on the home page
+        # appium has a tendency to think it's selecting 'Settings' when it
+        # hasn't, thus a sleep
+        sleep(1)
         wait { find('Settings').click }
 
         # scroll to and select 'Date and Time'
@@ -41,7 +43,7 @@ module Pages
         # this updates the month in the date picker by using the carrots
         if diff_month(date_1) > 0
           diff_month(date_1).times { date_edit[0].click }
-        else
+        elsif diff_month(date_1) < 0
           diff_month(date_1).abs.times { date_edit[1].click }
         end
       end
@@ -50,7 +52,7 @@ module Pages
         # this updates the day in the date picker by using the carrots
         if diff_days(date_1) > 0
           diff_days(date_1).times { date_edit[2].click }
-        else
+        elsif diff_days(date_1) < 0
           diff_days(date_1).abs.times { date_edit[3].click }
         end
       end
@@ -59,7 +61,7 @@ module Pages
         # this updates the year in the date picker by using the carrots
         if diff_years(date_1) > 0
           diff_years(date_1).times { date_edit[4].click }
-        else
+        elsif diff_years(date_1) < 0
           diff_years(date_1).abs.times { date_edit[5].click }
         end
       end
@@ -97,18 +99,6 @@ module Pages
         retry unless (tries -= 1).zero?
       end
 
-      def diff_month(date_1)
-        date_1.strftime('%m').to_i - Date.today.strftime('%m').to_i
-      end
-
-      def diff_days(date_1)
-        date_1.strftime('%d').to_i - Date.today.strftime('%d').to_i
-      end
-
-      def diff_years(date_1)
-        date_1.strftime('%Y').to_i - Date.today.strftime('%Y').to_i
-      end
-
       def open_set_date
         tries ||= 2
         find('Set date').click
@@ -116,6 +106,25 @@ module Pages
       rescue Selenium::WebDriver::Error::NoSuchElementError
         toggle_auto_date_time
         retry unless (tries -= 1).zero?
+      end
+
+      def edit_date
+        edit_date ||= tags('android.widget.EditText')
+      end
+
+      def diff_month(date_1)
+        month_reps = { 'Jan' => 1, 'Feb' => 2, 'Mar' => 3, 'Apr' => 4,
+                       'May' => 5, 'Jun' => 6, 'Jul' => 7, 'Aug' => 8,
+                       'Sep' => 9, 'Oct' => 10, 'Nov' => 11, 'Dec' => 12 }
+        date_1.strftime('%m').to_i - month_reps[edit_date[0].text]
+      end
+
+      def diff_days(date_1)
+        date_1.strftime('%d').to_i - edit_date[1].text.to_i
+      end
+
+      def diff_years(date_1)
+        date_1.strftime('%Y').to_i - edit_date[2].text.to_i
       end
     end
   end

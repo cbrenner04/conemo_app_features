@@ -25,7 +25,7 @@ describe 'An authorized user' do
     session.open
 
     session_1.start
-
+    session.assert_navigation_is_available
     wait do
       content = [session_1_slide_1.line_1, session_1_slide_1.line_2,
                  session_1_slide_1.line_3, session_1_slide_2.line_1,
@@ -50,7 +50,7 @@ describe 'An authorized user' do
     wait { session.choose_response }
     session.submit_response
 
-    session.click_next
+    2.times { session.click_next }
 
     session.return_to_home_page
     home.assert_on_page
@@ -60,7 +60,7 @@ describe 'An authorized user' do
     session.open
 
     session_2.start
-
+    session.assert_navigation_is_available
     wait do
       content = [session_2_slide_1.line_1, session_2_slide_1.line_2,
                  session_2_slide_1.line_3, session_2_slide_2.line_1,
@@ -68,14 +68,12 @@ describe 'An authorized user' do
                  session_2_slide_4.line_1, session_2_slide_4.line_2,
                  session_2_slide_5.line_1, session_2_slide_6.line_1,
                  session_2_slide_6.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     4.times { session.click_next }
 
-    session_2.open_dropdown
+    session.open_dropdown
     session.choose_response
     session.submit_response
 
@@ -87,23 +85,20 @@ describe 'An authorized user' do
   it 'completes the third session' do
     session.open
 
-    scroll_to_and_start(session_3, '1 / 2')
-
+    session.scroll_to_and_start(session_3)
     wait do
       content = [session_3_slide_1.line_1, session_3_slide_1.line_2,
                  session_3_slide_1.line_3, session_3_slide_2.line_1,
                  session_3_slide_2.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.click_next
 
-    session_3.open_dropdown
-    # expect(session.first_selection_text).to_not be ''
-
+    session.open_dropdown
     session_3.choose_item
+
+    session.click_next
 
     session.return_to_home_page
     home.assert_on_page
@@ -112,20 +107,17 @@ describe 'An authorized user' do
   it 'completes the fourth session' do
     session.open
 
-    scroll_to_and_start(session_4, '1 / 2')
-
+    session.scroll_to_and_start(session_4)
     wait do
       content = [session_4_slide_1.line_1, session_4_slide_1.line_2,
                  session_4_slide_2.line_1, session_4_slide_2.line_2,
                  session_4_slide_2.line_3]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.click_next
 
-    session_4.open_dropdown
+    session.open_dropdown
     sleep(1)
     session.choose_response
     session.submit_response
@@ -137,8 +129,7 @@ describe 'An authorized user' do
   it 'completes the fifth session' do
     session.open
 
-    scroll_to_and_start(session_5, '1 / 6')
-
+    session.scroll_to_and_start(session_5)
     wait do
       content = [session_5_slide_1.line_1, session_5_slide_1.line_2,
                  session_5_slide_2.line_1, session_5_slide_2.line_2,
@@ -146,14 +137,12 @@ describe 'An authorized user' do
                  session_5_slide_4.line_1, session_5_slide_4.line_2,
                  session_5_slide_5.line_1, session_5_slide_5.line_2,
                  session_5_slide_6.line_1, session_5_slide_6.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     4.times { session.click_next }
 
-    session_5.open_dropdown
+    session.open_dropdown
     session.choose_response
     session.submit_response
 
@@ -165,24 +154,19 @@ describe 'An authorized user' do
   it 'completes the sixth session' do
     session.open
 
-    scroll_to_and_start(session_6, '1 / 5')
-
+    session.scroll_to_and_start(session_6)
     wait do
       content = [session_6_slide_1.line_1, session_6_slide_1.line_2,
                  session_6_slide_1.line_3, session_6_slide_2.line_1,
                  session_6_slide_3.line_1, session_6_slide_4.line_1,
                  session_6_slide_4.line_2, session_6_slide_5.line_1,
                  session_6_slide_5.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     3.times { session.click_next }
 
-    session_6.open_dropdown
-    # expect(session.first_selection_text).to_not be ''
-
+    session.open_dropdown
     session_6.choose_item
 
     session.click_next
@@ -194,16 +178,13 @@ describe 'An authorized user' do
   it 'completes the seventh session' do
     session.open
 
-    scroll_to_and_start(session_7, '1 / 3')
-
+    session.scroll_to_and_start(session_7)
     wait do
       content = [session_7_slide_1.line_1, session_7_slide_1.line_2,
                  session_7_slide_2.line_1, session_7_slide_2.line_2,
                  session_7_slide_2.line_3, session_7_slide_3.line_1,
                  session_7_slide_3.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.click_play
@@ -228,15 +209,12 @@ describe 'An authorized user' do
   it 'completes the eighth session' do
     session.open
 
-    scroll_to_and_start(session_8, '1 / 3')
-
+    session.scroll_to_and_start(session_8)
     wait do
       content = [session_8_slide_1.line_1, session_8_slide_1.line_2,
                  session_8_slide_2.line_1, session_8_slide_3.line_1,
                  session_8_slide_3.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     2.times { session.click_next }
@@ -248,17 +226,14 @@ describe 'An authorized user' do
   it 'completes the ninth session' do
     session.open
 
-    scroll_to_and_start(session_9, '1 / 3')
-
+    session.scroll_to_and_start(session_9)
     wait do
       content = [session_9_slide_1.line_1, session_9_slide_1.line_2,
                  session_9_slide_1.line_3, session_9_slide_2.line_1,
                  session_9_slide_2.line_2, session_9_slide_2.line_3,
                  session_9_slide_3.line_1, session_9_slide_3.line_2,
                  session_9_slide_3.line_3]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     2.times { session.click_next }
@@ -270,23 +245,18 @@ describe 'An authorized user' do
   it 'completes the tenth session' do
     session.open
 
-    scroll_to_and_start(session_10, '1 / 4')
-
+    session.scroll_to_and_start(session_10)
     wait do
       content = [session_10_slide_1.line_1, session_10_slide_1.line_2,
                  session_10_slide_2.line_1, session_10_slide_2.line_2,
                  session_10_slide_3.line_1, session_10_slide_3.line_2,
                  session_10_slide_3.line_3, session_10_slide_4.line_1]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     3.times { session.click_next }
 
-    session_10.open_dropdown
-    # expect(session.first_selection_text).to_not be ''
-
+    session.open_dropdown
     session_10.choose_item
     session_10.open_datepicker
     session_10.set_picker
@@ -300,14 +270,11 @@ describe 'An authorized user' do
   it 'completes the eleventh session' do
     session.open
 
-    scroll_to_and_start(session_11, '1 / 2')
-
+    session.scroll_to_and_start(session_11)
     wait do
       content = [session_11_slide_1.line_1, session_11_slide_1.line_2,
                  session_11_slide_2.line_1, session_11_slide_2.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.click_next
@@ -319,15 +286,13 @@ describe 'An authorized user' do
   it 'completes the twelfth session' do
     session.open
 
-    scroll_to_and_start(session_12, '1 / 3')
-
+    session.scroll_to_and_start(session_12)
+    session.assert_navigation_is_available # fix sessions load w/o nav buttons
     wait do
       content = [session_12_slide_1.line_1, session_12_slide_1.line_2,
                  session_12_slide_1.line_3, session_12_slide_2.line_1,
                  session_12_slide_3.line_1, session_12_slide_3.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     2.times { session.click_next }
@@ -339,8 +304,7 @@ describe 'An authorized user' do
   it 'completes the thirteenth session' do
     session.open
 
-    scroll_to_and_start(session_13, '1 / 5')
-
+    session.scroll_to_and_start(session_13)
     wait do
       content = [session_13_slide_1.line_1, session_13_slide_1.line_2,
                  session_13_slide_1.line_3, session_13_slide_2.line_1,
@@ -348,16 +312,12 @@ describe 'An authorized user' do
                  session_13_slide_3.line_2, session_13_slide_3.line_3,
                  session_13_slide_4.line_1, session_13_slide_4.line_2,
                  session_13_slide_5.line_1]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     3.times { session.click_next }
 
-    session_13.open_dropdown
-    # expect(session.first_selection_text).to_not be ''
-
+    session.open_dropdown
     session_13.choose_item
 
     session.click_next
@@ -373,15 +333,12 @@ describe 'An authorized user' do
   it 'completes the fourteenth session' do
     session.open
 
-    scroll_to_and_start(session_14, '1 / 3')
-
+    session.scroll_to_and_start(session_14)
     wait do
       content = [session_14_slide_1.line_1, session_14_slide_1.line_2,
                  session_14_slide_2.line_1, session_14_slide_2.line_2,
                  session_14_slide_3.line_1]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.click_play
@@ -405,14 +362,11 @@ describe 'An authorized user' do
   it 'completes the fifteenth session' do
     session.open
 
-    scroll_to_and_start(session_15, '1 / 1')
-
+    session.scroll_to_and_start(session_15)
     wait do
       content = [session_15_slide_1.line_1, session_15_slide_1.line_2,
                  session_15_slide_1.line_3, session_15_slide_1.line_4]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     session.return_to_home_page
@@ -422,17 +376,14 @@ describe 'An authorized user' do
   it 'completes the sixteenth session' do
     session.open
 
-    scroll_to_and_start(session_16, '1 / 4')
-
+    session.scroll_to_and_start(session_16)
     wait do
       content = [session_16_slide_1.line_1, session_16_slide_1.line_2,
                  session_16_slide_1.line_3, session_16_slide_2.line_1,
                  session_16_slide_2.line_2, session_16_slide_2.line_3,
                  session_16_slide_3.line_1, session_16_slide_3.line_2,
                  session_16_slide_4.line_1]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     3.times { session.click_next }
@@ -448,14 +399,11 @@ describe 'An authorized user' do
   it 'completes the seventeenth session' do
     session.open
 
-    scroll_to_and_start(session_17, '1 / 2')
-
+    session.scroll_to_and_start(session_17)
     wait do
       content = [session_17_slide_1.line_1, session_17_slide_1.line_2,
                  session_17_slide_2.line_1, session_17_slide_2.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     2.times { session.click_next }
@@ -467,17 +415,14 @@ describe 'An authorized user' do
   it 'completes the last session' do
     session.open
 
-    scroll_to_and_start(session_18, '1 / 5')
-
+    session.scroll_to_and_start(session_18)
     wait do
       content = [session_18_slide_1.line_1, session_18_slide_1.line_2,
                  session_18_slide_2.line_1, session_18_slide_2.line_2,
                  session_18_slide_2.line_3, session_18_slide_3.line_1,
                  session_18_slide_3.line_2, session_18_slide_4.line_1,
                  session_18_slide_5.line_1, session_18_slide_5.line_2]
-      content.each do |c|
-        expect(driver.page_source).to include(c)
-      end
+      content.each { |c| expect(driver.page_source).to include(c) }
     end
 
     4.times { session.click_next }
@@ -489,17 +434,4 @@ describe 'An authorized user' do
     session.open
     expect(driver.page_source).to_not include('No leído')
   end
-end
-
-# opening the session will fail if you don't run the entire page due to an
-# element being subtracted from this page after every view
-def scroll_to_and_start(item, page_num)
-  tries ||= 7
-  item.start
-  sleep(1)
-  find(page_num)
-rescue Selenium::WebDriver::Error::NoSuchElementError
-  Appium::TouchAction
-    .swipe(start_x: 630, start_y: 1610, end_x: 540, end_y: 1090, duration: 300)
-  retry unless (tries -= 1).zero?
 end

@@ -16,8 +16,7 @@ module Pages
       end
 
       def open_dropdown
-        dropdown = tags('android.widget.Spinner')
-        dropdown[0].click
+        tags('android.widget.Spinner')[0].click
       end
 
       def click_play

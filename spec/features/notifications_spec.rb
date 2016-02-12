@@ -4,7 +4,7 @@
 def update_date_and_open_notification(day, title)
   notifications.update_date_and_navigate_to_notifications(day)
   notifications.open_notification(title)
-  sleep(1)
+  sleep(2)
   expect(driver.page_source).to include(title)
 end
 

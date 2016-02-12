@@ -8,12 +8,11 @@ module Pages
       end
 
       def start
-        button = tags('android.view.View')
-        button[8].click
+        tags('android.view.View')[8].click
       end
 
       def open_dropdown
-        execute_script 'mobile: tap', x: 880, y: 795
+        tag('android.widget.Spinner').click
       end
     end
   end

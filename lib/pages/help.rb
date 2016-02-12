@@ -4,11 +4,11 @@ module Pages
   module Help
     class << self
       def open
-        find('Solicitar ayuda').click
+        find('Contactar enfermera').click
       end
 
       def ask_for_help
-        find('Ask for Help').click
+        find('Solicitar ayuda').click
       end
     end
   end

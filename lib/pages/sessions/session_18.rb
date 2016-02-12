@@ -4,8 +4,7 @@ module Pages
   module SessionEighteen
     class << self
       def start
-        button = tags('android.view.View')
-        button[56].click
+        tags('android.view.View')[56].click
       end
 
       def title

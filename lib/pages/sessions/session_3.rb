@@ -8,18 +8,15 @@ module Pages
       end
 
       def start
-        button = tags('android.view.View')
-        button[11].click
+        tags('android.view.View')[11].click
       end
 
       def open_dropdown
-        execute_script 'mobile: tap', x: 925, y: 1530
+        tag('android.widget.Spinner').click
       end
 
       def choose_item
-        items = tags('android.widget.CheckedTextView')
-        r = rand(0..6)
-        items[r].click
+        tags('android.widget.CheckedTextView')[rand(0..6)].click
       end
     end
   end

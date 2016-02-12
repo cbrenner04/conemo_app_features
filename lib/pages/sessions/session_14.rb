@@ -8,8 +8,7 @@ module Pages
       end
 
       def start
-        button = tags('android.view.View')
-        button[44].click
+        tags('android.view.View')[44].click
       end
 
       def open_datepicker

@@ -8,23 +8,18 @@ module Pages
       end
 
       def start
-        button = tags('android.view.View')
-        button[41].click
+        tags('android.view.View')[41].click
       end
 
       def open_dropdown
-        execute_script 'mobile: tap', x: 890, y: 1030
+        tag('android.widget.Spinner').click
       end
 
       def choose_item
         tries ||= 2
-        items = tags('android.widget.CheckedTextView')
-        r = rand(0..8)
-        items[r].click
+        tags('android.widget.CheckedTextView')[rand(0..8)].click
       rescue NoMethodError
-        Appium::TouchAction
-          .swipe(start_x: 630, start_y: 1610,
-                 end_x: 540, end_y: 1090, duration: 300)
+        session.scroll_down
         retry unless (tries -= 1).zero?
       end
 
